@@ -1,0 +1,194 @@
+\documentclass[12pt,fleqn]{article}
+
+\usepackage{amsmath,amssymb,amsthm,enumerate,color,graphics,epsfig,url}
+
+\usepackage{cmap}
+
+\usepackage[pdftex,
+colorlinks,%
+linkcolor=blue,citecolor=red,urlcolor=blue,
+hyperindex,%
+plainpages=false,%
+bookmarksopen,%
+bookmarksnumbered,%
+unicode]{hyperref}
+\usepackage [dvipsnames] {xcolor}
+\usepackage{pgf,tikz,pgfplots,tikz-3dplot}
+\usetikzlibrary{calendar,folding}
+\usetikzlibrary{arrows,patterns,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+\usetikzlibrary{calc,3d,intersections,shapes}
+%\pgfplotsset{compat=1.11}
+\usepgfplotslibrary{polar}
+
+\usepackage[utf8]{inputenc}
+\usepackage[ukrainian]{babel}
+
+\setlength{\textwidth}{160.0mm}
+\setlength{\textheight}{240.0mm}
+\setlength{\oddsidemargin}{0mm}
+\setlength{\evensidemargin}{0mm}
+\setlength{\topmargin}{-18mm}
+\setlength{\parindent}{5.0mm}
+
+%\newtheorem{theorem}{Теорема}[section]
+%\newtheorem*{theoremN}{Теорема}
+%\newtheorem{proposition}{Твердження}[section]
+%\newtheorem{statement}{Твердження}[section]
+%\newtheorem{lemma}{Лема}[section]
+%\newtheorem{corollary}{Наслідок}[section]
+
+{
+%\theoremstyle{definition}
+%\newtheorem{definition}{Означення}[section]
+%\newtheorem{example}{Приклад}[section]
+%\newtheorem{problem}{Задача}[section]
+%\newtheorem*{problem*}{Задача}
+%\newtheorem{question}{Питання}[section]
+
+
+\newtheorem{exm}{Приклад}[section]
+\theoremstyle{theorem}
+\newtheorem{thm}{Теорема}[section]
+\newtheorem{ozn}{Означення}[section]
+\theoremstyle{proof}
+\newtheorem*{dov}{Доведення}
+
+}
+
+\usepackage[labelsep=period]{caption}
+\numberwithin{figure}{section}
+\numberwithin{equation}{section}
+
+\begin{document}
+\section{Теореми про лишки.}
+\subsection{Поняття лишку в скіченній точці.}
+Нехай функція $f(z)$ регулярна в проколотому околі точки $a$, $a\neq\infty$, тобто в кільці $K: 0<|z-a|<\rho$. Точка $a$ є для $f(z)$ або ізольованою особливою точкою одно\-значного характеру, або точкою регулярності і зображається в кільці $K$ збіжним рядом Лорана.
+$$f(z)=\sum_{k=-\infty}^{\infty}c_k(z-a)^k.$$
+
+\begin{ozn}\label{ozn.15.1.1}
+  Лишком функції $f(z)$ в точці $a$ (позначається $\underset{z=a}{res} f(z)$) нази\-вається коефіцієнт $c_{-1}$ ряду Лорана для $f(z)$ в околі точки $a$, тобто
+  \begin{equation}\label{15.1.1}
+    \underset{z=a}{res} f(z)=c_{-1}
+  \end{equation}
+  з формули для обчислення коефіцієнтів ряду Лорана (див. п. 12. 2) при $n=-1$ будемо мати
+  \[c_{-1}=\frac{1}{2\pi i}\int_{\gamma_{\rho}}f(\xi)\,\mathrm{d}\xi,\]
+  де $\gamma_{\rho}:|z-a|=\rho$, $0<\rho<\rho_0$ --- коло радіуса $\rho$ з центром в точці $a$, орієнтована в додатньому напрямі. Таким чином
+    \begin{equation}\label{15.1.2}
+    \int_{\gamma_{\rho}}f(\xi)\,\mathrm{d}\xi=2\pi \underset{z=a}{res}f(a).
+  \end{equation}
+
+  Тобто, якщо $z=a$ --- ізольована особлива така функція $f(z)$, то інтеграл від функції $f(z)$ по межі достатньо малого околу точку $a$  рівний лишку в цій точці, помноженому на $2\pi i$.
+\end{ozn}
+
+Очевидно, $\underset{z=a}{res}f(a) = 0$, якщо $a (a\neq \infty$ --- точка регулярності функції $f(z)$.
+
+\begin{exm}\label{exm.15.1.1}
+  Знайти лишок функції $e^{\frac{1}{z}}$ в точці $z=0$.
+  Оскільки
+  \[e^{\frac{1}{z}}=1+\frac{1}{1!z} + \frac{1}{1!z} + \dots, \quad c_1=1, \text{то } \underset{z=0}{res}e^{\frac{1}{z}}=1.\]
+
+  Отже, згідно формули (\ref{15.1.2})
+  \[\int_{|\xi|=1}e^{\frac{1}{\xi}}\,\mathrm{d}\xi=2\pi i \underset{z=0}{res} e^{\frac{1}{z}}=2\pi i.\]
+\end{exm}
+
+\begin{exm}\label{exm.15.1.2}
+Знайти лишок функції $f(z)=\frac{\sin z}{z^4}$ в точці $z=0$.
+
+Так як
+\[f(z)=\frac{1}{z^4}(z-\frac{z^3}{3!}+\frac{z^5}{5!}-\dots),\quad \text{то }c_{-1}=\frac{1}{3!}, \quad\text{а } \int_{|\xi|=2}\frac{\sin \xi}{{\xi}^4}\,\mathrm{d}\xi=\frac{2\pi i}{3!}=\frac{\pi i}{3}.\]
+\end{exm}
+
+\begin{exm}\label{exm.15.1.3}
+Знайти лишок функції $f(z)=z=z\cdot\cos\frac{1}{z+1}$ в точці $z=-1$.
+
+Оскільки
+\[f(z)=\big[(z+1)-1\big] \big[1-\frac{1}{2!(z+1)^2+\dots}\big]\quad \text{то } c_1=-\frac{1}{2!} \quad\text{і } \underset{z=-1}{res}f(z)=-\frac{1}{2}\]
+\end{exm}
+
+\subsection{Обчислення лишку в полюсі, який є скінченою точкою комплексної площини.}
+
+Розглянемо два випадки: випадок простого полюса і кратного полюса.
+\begin{enumerate}
+  \item
+  Якщо точка $a$ --- простий полюс функції $f(z)$, то ряд Лорана в околі точки $a$ має вид
+    \[f(z)=c_{-1}(z-a)^{-1}+\sum_{k=0}^{\infty}c_k(z-a)^k.\]
+
+    Отже $c_{-1}=\lim_{z\to a}(z-a)f(z)$.
+
+    Для знаходження лишку в простому полюсі має місце формула
+    \begin{equation}\label{15.2.1}
+    \underset{z=a}{res}f(z)=\lim_{z\to a}(z-a)f(z).
+    \end{equation}
+
+    Якщо $f(z)=\frac{\varphi(z)}{\psi(z)}$, де $\varphi(z)$ і $\psi(z)$ --- регулярні в точці $a$ функції, причому $\varphi(a)\neq 0$, $\psi(a)=0$, $\psi'(z)\neq 0$, то точка $a$ простим полюсом функції $f(z)$, і за формулою (\ref{15.2.1}) обчислюємо
+    \[
+    \underset{z=a}{res}f(z)=\lim_{z\to a}\frac{(z-a)\varphi(z)} {\psi(z)}=\lim_{z\to a}\frac{\varphi(z)}{\frac{\psi(z)-\psi(a)}{z-a}}=\frac{\varphi(a)}
+    {\psi'(a)},
+    \]
+    тобто
+    \begin{equation}\label{15.2.2}
+    \underset{z=a}{res}\frac{\varphi(z)}{\psi(z)}=\frac{\varphi(a)}
+    {\psi'(a)}.
+    \end{equation}
+    \item
+    Якщо точка $a$ --- полюс порядку $m$ для функції $f(z)$, то ряд Лорана в околі точки $a$ має вид
+    \begin{equation}\label{15.2.3}
+    f(z)=\frac{c-m}{(z-a)^m}+\dots + \frac{c-1}{z-a}+ c_0 + c_1(z-a)+\dots
+    \end{equation}
+
+    Помноживши обидві частини рівності на (\ref{15.2.3}), будемо мати
+    \begin{equation}\label{15.2.4}
+    (z-a)^m f(z)=c_{-m}+\dots+c_{-1}(z-a)^{m-1}+c_0(z-a)^a+\dots
+    \end{equation}
+    Диференціючи рівність (\ref{15.2.4}) $m-1$ раз і знайшовши границю при $z\to a$, матимемо
+    \[(m-1)!c_{-1}=\lim_{z\to a}\frac{\mathrm{d}^{m-1}}{\mathrm{d}z^{m-2}}\Big[(z-a)^m f(z)\Big].
+    \]
+
+    Звідси
+    \begin{equation}\label{15.2.5}
+    c_{-1}=\frac{1}{(m-1)!}\lim_{z\to a}\frac{\mathrm{d}^{(m-1)}}{\mathrm{d}z^{(m-1)}}\Big[(z-a)^m f(z)\Big]
+    \end{equation}
+
+    Зокрема, якщо $f(z)=\frac{h(z)}{(z-a)^m}$, де функція $h(z)$ регулярна в точці $a$, $h(a)\neq0$, то з (\ref{15.2.5}) одержуємо формулу
+    \begin{equation}\label{15.2.6}
+        \underset{z=a}{res}\frac{h(z)}{(z-a)^m}=\frac{1}{(m-1)!}h^{(m-1)}(a)
+    \end{equation}
+\end{enumerate}
+
+\begin{exm}\label{exm.15.2.1}
+  Обчислити лишки в полюсах функції $f(z)=\frac{e^z}{(z+1)(z-3)^3}$.
+  Оскільки $z=-1$ --- полюс першого порядку, то за формулою (\ref{15.2.1})
+  \[\underset{z=-1}{res}f(z)=\Big[\frac{e^z}{(z-3)^3}\Big]_{z=-1}=\frac{-e^{-1}}{4^3}\]
+  а за формулою (\ref{15.2.6})
+  \[\underset{z=3}{res}f(z)=\frac{1}{2}\bigg(\frac{e^z}{z+1}\bigg)\Bigg|_{z=3}=\frac{10}{4^3}e^3\]
+\end{exm}
+
+\begin{exm}\label{exm.15.2.2}
+  Для функції $\cot z=\frac{\cos z}{\sin z}$ точки $z=k\pi$, $k \in \mathbb{Z}$, є простими полюсами. За формулою (\ref{15.2.2}) знаходимо
+    \[\underset{z=k\pi}{res}\cot z=\Big[\frac{\cos z}{(\sin z)'} \Big]_{z=k\pi}=1\]
+\end{exm}
+\subsection{Лишки в нескінченно віддалених точках.}
+Нехай функція $f(z)$ регулярна в області $r_0<|z|<\infty$, тобто в околі точки $z=\infty$. Тоді точка $z=\infty$ є для функції $f(z)$ або ізольованою особливою точкою однозначною характеру, або точкою регулярності, а функції $f(z)$ зображається в області $r_0<|z|<\infty$ збіжності ряду Лорана.
+\begin{equation}\label{15.3.1}
+  f(z)=\sum_{k=\infty}^{\infty}c_kz^k=\sum_{k=0}^{\infty}c_kz^k+\frac{c_{-1}}{z} + \frac{c_{-2}}{z^2}+\dots
+\end{equation}
+
+\begin{ozn}
+  Лишком функції $f(z)$ в точці $z=\infty$ (позначається $\underset{z=\infty}{res}f(z)$) називається число --- $c_{-1}$, де $c_{-1}$ --- коефіцієнт при $\frac{1}{z}$ ряду Лорана (\ref{15.3.1}) для функції $f(z)$ в околі нескінченного віддаленої точки, тобто
+\begin{equation}\label{15.3.2}
+      \underset{z=\infty}{res}f(z)=-c_{-1}.
+\end{equation}
+Якщо функція $f(z)$ регулярна в області $D:r_0|z|<\infty$, то (див. п. 12. 2) маємо
+\[c_{-1}=\frac{1}{2\pi i}\int_{|\xi|=r}f(\xi)\,\mathrm{d}\xi\]
+де $|\xi|=r, r>r_0$, орієнтована проти годинникової стрілки. Отже, внаслідок (\ref{15.3.2}) знаходимо
+\begin{equation}\label{15.3.2}
+     \int_{\gamma_r}f(\xi)\,\mathrm{d}\xi=2\pi i  \underset{z=\infty}{res} f(z),
+\end{equation}
+ 
+де $\gamma_r$ --- коло $|\xi|=r$, орієнтована за годинниковою стрілкою.
+
+\textbf{Зауваження.} Якщо функція $f(z)$ регулярна в проколотому околі $U$ скінченної, чи нескінченної точки $c\in \bar{\mathbb{C}}$, то $\int_{\gamma_\rho}f(\xi)\,\mathrm{d}\xi$, $\gamma_\rho$ --- границя цього околу, рівний $\underset{z=a}{res}f(z)\cdot 2\pi i$. При обході $\gamma_\rho$ окіл $U$ в формулах (\ref{15.1.2}) і (\ref{15.3.2}) залишається зліва.
+
+Якщо точка $z=\infty$ є нулем порядку $n$ функції $f(z)$, то в околі цієї нескіченно віддаленої точки функція $f(z)$ зображається рядом Лорана $f(z) = \frac{c_{-n}}{z^n}+\frac{c_{-(n+1)}}{z^{n+1}}+\dots$, де $c_{-n}\neq 0$.
+\end{ozn}
+\end{document} 
